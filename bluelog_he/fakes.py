@@ -5,7 +5,7 @@
 
 
 
-
+from random import randint
 
 from faker import Faker
 from sqlalchemy.exc import IntegrityError
@@ -39,3 +39,16 @@ def fake_categories(count=10):
             db.session.commit()
         except IntegrityError:
             db.session.rollback()
+
+
+def fake_posts(count=50):
+    for i in range(count):
+        post = Post(
+            title=fake.sentence(),
+            body=fake.text(2000),
+            category=Category.query.get(randint(1, Category.query.count())),
+            timestamp=fake.date_time_this_year()
+        )
+
+        db.session.add(post)
+    db.session.commit()
