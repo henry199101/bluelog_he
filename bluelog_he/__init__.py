@@ -19,21 +19,21 @@ from bluelog_he.settings import config
 
 
 
-def create_app(config_name=None):
+def make_app(config_name=None):
     if config_name is None:
         config_name = os.getenv('FLASK_CONFIG', 'development')
 
     app = Flask('bluelog_he')
     app.config.from_object(config[config_name])
 
-
-
-
-
-
-
-
-
+    register_logging(app)
+    init_extensions(app)
+    register_blueprints(app)
+    register_commands(app)
+    register_errors(app)
+    register_shell_context(app)
+    register_template_context(app)
+    return app
 
 
 def register_logging(app):
