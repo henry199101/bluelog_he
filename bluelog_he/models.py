@@ -24,7 +24,7 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True)
 
-
+    posts = db.relationship('Post', back_populates='category')
 
 
 
@@ -40,3 +40,8 @@ class Post(db.model):
     title = db.Column(db.String(60))
     body = db.Column(db.text)
     timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+
+    category = db.relationship('Category', back_populates='posts')
