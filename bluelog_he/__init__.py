@@ -7,7 +7,7 @@
 
 import os
 
-
+import click
 from flask import Flask, render_template
 
 from bluelog_he.blueprints.admin import admin_bp
@@ -76,3 +76,16 @@ def register_errors(app):
     @app.errorhandler(500)
     def internal_server_error(e):
         return render_template('errors/500.html', 500)
+
+
+def register_commands(app):
+    @app.cli.command()
+    @click.option('--drop', is_flag=True, help='Create after drop.')
+    def initdb(drop):
+
+        if drop is not None:
+            click.confirm('This operation will delete the database, do you want to continue?', abort=True)
+            db.drop_all()
+            click.echo('Drop tables.')
+        db.create_all()
+        click.echo('Initialized database.')
