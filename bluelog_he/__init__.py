@@ -8,7 +8,7 @@
 import os
 
 
-from flask import Flask
+from flask import Flask, render_template
 
 from bluelog_he.blueprints.admin import admin_bp
 from bluelog_he.blueprints.auth import auth_bp
@@ -62,3 +62,17 @@ def register_shell_context(app):
 
 def register_template_context(app):
     pass
+
+
+def register_errors(app):
+    @app.errorhandler(400)
+    def bad_request(e):
+        return render_template('errors/400.html'), 400
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('errors/404.html'), 404
+
+    @app.errorhandler(500)
+    def internal_server_error(e):
+        return render_template('errors/500.html', 500)
