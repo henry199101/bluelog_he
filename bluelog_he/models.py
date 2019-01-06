@@ -45,7 +45,7 @@ class Post(db.model):
     category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
 
     category = db.relationship('Category', back_populates='posts')
-
+    comments = db.relationship('Comment', back_populates='post', cascade='all, delete-orphan')
 
 
 class Comment(db.Model):
@@ -59,7 +59,9 @@ class Comment(db.Model):
     timestamp = db.Column(db.DateTime, default=datetime.utcnow, index=True)
 
 
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'))
 
+    post = db.relationship('Post', back_populates='comments')
 
 
 
