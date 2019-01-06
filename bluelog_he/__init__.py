@@ -36,8 +36,8 @@ def create_app(config_name=None):
 
 
 
-
-
+def register_logging(app):
+    pass
 
 
 def init_extensions(app):
