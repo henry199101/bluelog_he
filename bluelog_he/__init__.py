@@ -13,7 +13,7 @@ from flask import Flask
 from bluelog_he.blueprints.admin import admin_bp
 from bluelog_he.blueprints.auth import auth_bp
 from bluelog_he.blueprints.blog import blog_bp
-
+from bluelog_he.extensions import bootstrap, db, ckeditor, mail, moment
 from bluelog_he.settings import config
 
 
@@ -40,12 +40,12 @@ def create_app(config_name=None):
 
 
 
-
-
-
-
-
-
+def init_extensions(app):
+    bootstrap.init_app(app)
+    db.init_app(app)
+    ckeditor.init_app(app)
+    mail.init_app(app)
+    moment.init_app(app)
 
 
 def register_blueprints(app):
