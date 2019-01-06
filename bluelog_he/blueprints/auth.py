@@ -5,7 +5,7 @@
 
 
 
-from flask import Flask, Blueprint
+from flask import Blueprint
 
 auth_bp = Blueprint('auth', __name__)
 
