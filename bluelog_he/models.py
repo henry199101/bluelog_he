@@ -24,3 +24,19 @@ class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), unique=True)
 
+
+
+
+
+
+
+
+
+
+
+
+class Post(db.model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(60))
+    body = db.Column(db.text)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
