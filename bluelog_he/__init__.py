@@ -58,3 +58,7 @@ def register_shell_context(app):
     @app.shell_context_processor
     def make_shell_context():
         return dict(db=db)
+
+
+def register_template_context(app):
+    pass
