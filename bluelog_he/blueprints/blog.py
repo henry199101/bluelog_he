@@ -17,9 +17,9 @@ def index():
 
 @blog_bp.route('/about')
 def about():
-    return 'The about page'
+    return render_template('blog/about.html')
 
 
 @blog_bp.route('/category/<int:category_id>')
-def category(category_id):
-    return 'The category page'
+def show_category(category_id):
+    return render_template('blog/category.html')
