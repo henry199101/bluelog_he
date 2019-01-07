@@ -23,3 +23,8 @@ def about():
 @blog_bp.route('/category/<int:category_id>')
 def show_category(category_id):
     return render_template('blog/category.html')
+
+
+@blog_bp.route('/post/<int:post_id>', methods=['GET', 'POST'])
+def show_post(post_id):
+    return render_template('blog/post.html')
