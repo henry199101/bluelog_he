@@ -63,7 +63,7 @@ def fake_comments(count=500):
             body=fake.sentence(),
             timestamp=fake.date_time_this_year(),
             reviewed=True,
-            post=Post.query.get(randint(1, Post.query()))
+            post=Post.query.get(randint(1, Post.query.count()))
         )
         db.session.add(comment)
 
