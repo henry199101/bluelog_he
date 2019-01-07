@@ -56,3 +56,9 @@ class CommentForm(FlaskForm):
     site = StringField('Site', validators=[Optional(), URL(), Length(0, 255)])
     body = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField()
+
+
+class AdminCommentForm(CommentForm):
+    author = HiddenField()
+    email = HiddenField()
+    site = HiddenField()
