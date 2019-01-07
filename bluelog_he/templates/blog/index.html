@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>{{ admin.blog_title|default('Blog Title') }}</h1>
+        <h4>&nbsp;{{ admin.blog_sub_title|default('Blog Subtitle') }}</h4>
+    </div>
+    <div>
+        <div>
+        </div>
+        <div>
+            {% include 'blog/_sidebar.html' %}
+        </div>
+    </div>
+{% endblock content %}
