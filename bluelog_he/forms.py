@@ -7,10 +7,10 @@
 
 from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, SelectField, ValidationError, BooleanField, PasswordField, \
+from wtforms import StringField, SubmitField, SelectField, TextAreaField, ValidationError, HiddenField, \
+    BooleanField, PasswordField
 
-
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, Email, Length, Optional, URL
 
 from bluelog_he.models import Category
 
@@ -48,3 +48,11 @@ class CategoryForm(FlaskForm):
     def validate_name(self, field):
         if Category.query.filter_by(name=field.data).first():
             raise ValidationError('Name already in use.')
+
+
+class CommentForm(FlaskForm):
+    author = StringField('Name', validators=[DataRequired(), Length(1, 30)])
+    email = StringField('Email', validators=[DataRequired(), Email(), Length(1, 254)])
+    site = StringField('Site', validators=[Optional(), URL(), Length(0, 255)])
+    body = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField()
