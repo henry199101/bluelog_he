@@ -14,7 +14,7 @@ from bluelog_he.blueprints.admin import admin_bp
 from bluelog_he.blueprints.auth import auth_bp
 from bluelog_he.blueprints.blog import blog_bp
 from bluelog_he.extensions import bootstrap, db, ckeditor, mail, moment
-
+from bluelog_he.models import Admin, Category
 from bluelog_he.settings import config
 
 
