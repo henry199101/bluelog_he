@@ -9,7 +9,6 @@ from flask_ckeditor import CKEditorField
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField, TextAreaField, ValidationError, HiddenField, \
     BooleanField, PasswordField
-
 from wtforms.validators import DataRequired, Email, Length, Optional, URL
 
 from bluelog_he.models import Category
@@ -22,11 +21,12 @@ class LoginForm(FlaskForm):
     submit = SubmitField()
 
 
-
-
-
-
-
+class SettingForm(FlaskForm):
+    name = StringField('Name', validators=[DataRequired(), Length(1, 70)])
+    blog_title = StringField('Blog Title', validators=[DataRequired(), Length(1, 60)])
+    blog_sub_title = StringField('Blog Sub Title', validators=[DataRequired(), Length(1, 100)])
+    about = CKEditorField('About Page', validators=[DataRequired()])
+    submit = SubmitField()
 
 
 class PostForm(FlaskForm):
