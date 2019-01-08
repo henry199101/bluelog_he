@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% from 'bootstrap/pagination.html' import render_pager %}
 
 {% block title %}Home{% endblock %}
 
@@ -10,6 +10,10 @@
     </div>
     <div>
         <div>
+            {% include 'blog/_posts.html' %}
+            {% if posts %}
+                <div>{{ render_pager(pagination) }}</div>
+            {% endif %}
         </div>
         <div>
             {% include 'blog/_sidebar.html' %}
