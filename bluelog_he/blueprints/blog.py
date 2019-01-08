@@ -7,12 +7,24 @@
 
 from flask import render_template, Blueprint
 
+
+from bluelog_he.extensions import db
+
+from bluelog_he.models import Post
+
+
 blog_bp = Blueprint('blog', __name__)
+
+
+
+
+
 
 
 @blog_bp.route('/')
 def index():
-    return render_template('blog/index.html')
+    posts = Post.query.order_by(Post.timestamp.desc()).all()
+    return render_template('blog/index.html', posts=posts)
 
 
 @blog_bp.route('/about')
